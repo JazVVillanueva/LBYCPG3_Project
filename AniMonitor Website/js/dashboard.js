@@ -1,8 +1,37 @@
 const POINTS = 30;
 const labels = Array.from({length:POINTS},(_,i)=>{const d=new Date(Date.now()-(POINTS-1-i)*2000);return d.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});});
+
+// Initialize with mock data - will be replaced by Firebase if enabled
 let uvData = Array.from({length:POINTS},()=>+(7+Math.random()*3).toFixed(2));
 let tempData = Array.from({length:POINTS},()=>+(30+Math.random()*4).toFixed(1));
 let humData = Array.from({length:POINTS},()=>+(72+Math.random()*10).toFixed(0));
+
+let signalQuality = 4;
+let pollRate = 2000; // in milliseconds
+
+// Firebase real-time listener
+function initializeFirebaseListener(){
+  if(typeof USE_FIREBASE === 'undefined' || !USE_FIREBASE) return;
+  
+  sensorRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    if(data){
+      const newUV = data.uv || (7 + Math.random() * 3).toFixed(2);
+      const newTemp = data.temperature || (30 + Math.random() * 4).toFixed(1);
+      const newHum = data.humidity || (72 + Math.random() * 10).toFixed(0);
+      signalQuality = data.signal || 4;
+      
+      uvData.shift();
+      uvData.push(+newUV);
+      tempData.shift();
+      tempData.push(+newTemp);
+      humData.shift();
+      humData.push(+newHum);
+    }
+  }, (error) => {
+    console.error('Firebase error:', error);
+  });
+}
 
 function mkGrad(ctx,color,alpha1=0.35,alpha2=0.02){
   const g=ctx.createLinearGradient(0,0,0,160);
@@ -136,16 +165,19 @@ function updateAlerts(uv, temp, hum){
 }
 
 function loadDefault(){
+  // Initialize Firebase listener if enabled
+  initializeFirebaseListener();
+  
   // Initialize alerts with current data
   updateAlerts(uvData[uvData.length-1], tempData[tempData.length-1], humData[humData.length-1]);
 
   setInterval(()=>{
     const now=new Date();
     document.getElementById('clk').textContent=now.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    // Update signal strength randomly (simulating signal variation)
-    const signalStrength = Math.floor(Math.random() * 4) + 1; // 1-4 bars
+    // Update signal strength (from Firebase if available, otherwise simulated)
     const signalSymbols = ['▂', '▂▄', '▂▄▆', '▂▄▆█'];
-    document.getElementById('signalStrength').textContent = signalSymbols[signalStrength - 1];
+    const strength = USE_FIREBASE ? signalQuality : Math.floor(Math.random() * 4) + 1;
+    document.getElementById('signalStrength').textContent = signalSymbols[Math.min(strength - 1, 3)];
   },1000);
 
   setInterval(()=>{
