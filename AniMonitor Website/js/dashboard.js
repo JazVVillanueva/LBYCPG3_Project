@@ -142,6 +142,10 @@ function loadDefault(){
   setInterval(()=>{
     const now=new Date();
     document.getElementById('clk').textContent=now.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    // Update signal strength randomly (simulating signal variation)
+    const signalStrength = Math.floor(Math.random() * 4) + 1; // 1-4 bars
+    const signalSymbols = ['▂', '▂▄', '▂▄▆', '▂▄▆█'];
+    document.getElementById('signalStrength').textContent = signalSymbols[signalStrength - 1];
   },1000);
 
   setInterval(()=>{
