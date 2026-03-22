@@ -296,8 +296,17 @@ temperature graph
 }
 
 .day-card.active-card {
+    /*
     background: rgba(146, 146, 146, 0.75);
     border-color: rgba(255,255,255,0.22);
+    */
+    background: rgba(66, 66, 66, 0.4);
+    backdrop-filter: blur(1px) saturate(1.5) brightness(0.7); /* change these values to adjust blur effect */
+    -webkit-backdrop-filter: blur(0.5px) saturate(1.5) brightness(0.7); /* change these values to adjust blur effect */
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+    box-shadow: 0 8px 32px 0 rgba(224, 224, 224, 0.2);
+    padding: 2rem;
 }
 
 .title-card {
@@ -343,7 +352,7 @@ temperature graph
     }
     .day-card {
         width: 100%;
-        min-width: 0; /* Resets the previous min-width */
+        min-width: 0;
         
         flex-direction: row; 
         justify-content: space-evenly;
