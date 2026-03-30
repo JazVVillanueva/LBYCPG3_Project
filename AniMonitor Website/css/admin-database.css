@@ -17,7 +17,7 @@
     --text-secondary:  rgba(255,255,255,0.55);
     --green:           #34c759;
     --red:             #ff3b30;
-    --amber:           #ff9500;
+    --amber:           #ffffff;
     --teal:            #30b0c0;
     --purple:          #8b5cf6;
     --card-radius:     18px;
@@ -29,51 +29,33 @@ html, body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-primary);
     overflow-x: hidden;
-    background:
-        radial-gradient(at 0% 0%, rgba(56,189,248,0.05) 0%, transparent 50%),
-        linear-gradient(160deg, #1e293b 0%, #0f172a 100%);
+    background: url('../background-images/Thunderstorm.jpg') no-repeat center center;
+    background-size: cover;
     background-attachment: fixed;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.14) 100%);
-    pointer-events: none;
-    z-index: -1;
+    background-color: #4a5568;
+    z-index: -2;
+    transition: background 0.5s ease-in-out;
 }
 
 /* ── GLASS BASE ── */
 .glass {
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(135deg,
-            rgba(255,255,255,0.16) 0%,
-            rgba(255,255,255,0.07) 38%,
-            rgba(255,255,255,0.03) 100%);
-    backdrop-filter: blur(14px) saturate(1.35) brightness(1.08);
-    -webkit-backdrop-filter: blur(14px) saturate(1.35) brightness(1.08);
-    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px) saturate(1.2) brightness(1.05);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2) brightness(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: var(--card-radius);
-    box-shadow:
-        0 10px 32px rgba(0,0,0,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.16),
-        inset 0 -1px 0 rgba(255,255,255,0.04);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+    padding: 1.5rem;
 }
 
-.glass::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(180deg,
-        rgba(255,255,255,0.20) 0%,
-        rgba(255,255,255,0.06) 24%,
-        rgba(255,255,255,0.02) 52%,
-        transparent 100%);
-    pointer-events: none;
+.glass-dark {
+    background: rgba(30, 30, 30, 0.35);
+    backdrop-filter: blur(8px) saturate(1.4) brightness(0.75);
+    -webkit-backdrop-filter: blur(8px) saturate(1.4) brightness(0.75);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: var(--card-radius);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.28);
+    padding: 1.5rem;
 }
 
 /* ── LAYOUT ── */
@@ -112,7 +94,7 @@ body::before {
 }
 
 .page-title .accent {
-    color: var(--amber);
+    color: #ffffff;
 }
 
 .clock {
@@ -129,11 +111,13 @@ body::before {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    border-radius: 20px;
+    border-radius: 50px;
     padding: 5px 14px;
-    border: 0.5px solid var(--glass-border2);
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px) brightness(1.05);
+    -webkit-backdrop-filter: blur(6px) brightness(1.05);
+    box-shadow: 0 1.5px 5px rgba(63, 63, 63, 0.3);
 }
 
 .status-dot {
@@ -166,6 +150,18 @@ body::before {
     align-items: center;
     gap: 14px;
     padding: 16px 14px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px) saturate(1.2) brightness(1.05);
+    -webkit-backdrop-filter: blur(4px) saturate(1.2) brightness(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-3px);
 }
 
 .stat-icon {
@@ -177,6 +173,8 @@ body::before {
     align-items: center;
     justify-content: center;
     font-size: 17px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
 }
 
 .stat-body {
@@ -200,7 +198,7 @@ body::before {
 
 /* ── SECTION PANELS ── */
 .section-panel {
-    padding: 20px 20px 14px;
+    padding: 1.25rem 1.5rem 1rem;
     margin-bottom: 16px;
 }
 
@@ -237,15 +235,18 @@ body::before {
     align-items: center;
     gap: 6px;
     padding: 6px 14px;
-    border-radius: 40px;
-    border: 1px solid rgba(255,255,255,0.22);
-    background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.82);
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.28);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px) brightness(1.05);
+    -webkit-backdrop-filter: blur(6px) brightness(1.05);
+    color: rgba(255,255,255,0.90);
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, transform 0.15s;
+    box-shadow: 0 1.5px 5px rgba(0,0,0,0.15);
 }
 
 .admin-btn:hover {
@@ -272,15 +273,18 @@ body::before {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.22);
-    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.26);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: 11px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.85);
     transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1.5px 5px rgba(0,0,0,0.15);
 }
 
 .pause-toggle:hover {
@@ -296,17 +300,20 @@ body::before {
 
 /* ── SELECT ── */
 .admin-select {
-    padding: 5px 10px;
-    border-radius: 40px;
-    border: 1px solid rgba(255,255,255,0.22);
-    background: rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.82);
+    padding: 5px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.26);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: rgba(255,255,255,0.90);
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     outline: none;
     appearance: none;
+    box-shadow: 0 1.5px 5px rgba(0,0,0,0.12);
 }
 
 .admin-select option {
@@ -327,8 +334,8 @@ body::before {
     gap: 10px;
     padding: 9px 12px;
     border-radius: 10px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .config-key {
@@ -388,7 +395,7 @@ body::before {
     color: var(--text-secondary);
     text-align: left;
     white-space: nowrap;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .admin-table td {
@@ -485,10 +492,10 @@ body::before {
     color: var(--text-secondary);
 }
 
-.val-uv   { color: var(--amber); font-weight: 700; }
-.val-temp { color: #ff6b63;      font-weight: 700; }
-.val-hum  { color: var(--teal);  font-weight: 700; }
-.val-sig  { color: var(--text-secondary); }
+.val-uv   { color: #ffffff; font-weight: 700; }
+.val-temp { color: #ffffff; font-weight: 700; }
+.val-hum  { color: #ffffff; font-weight: 700; }
+.val-sig  { color: rgba(255,255,255,0.75); }
 
 .db-tag {
     display: inline-block;

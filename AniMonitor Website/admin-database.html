@@ -28,7 +28,7 @@
         };
 
         // Set to true when Firebase credentials are configured
-        const USE_FIREBASE = false;
+        const USE_FIREBASE = true;
 
         let database;
         if (USE_FIREBASE) {
@@ -85,7 +85,7 @@
     <!-- ── SUMMARY STAT CARDS ── -->
     <div class="stat-grid">
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(255,149,0,0.14);color:#ff9500;">
+            <div class="stat-icon">
                 <i class="fas fa-microchip"></i>
             </div>
             <div class="stat-body">
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(52,199,89,0.14);color:#34c759;">
+            <div class="stat-icon">
                 <i class="fas fa-circle-check"></i>
             </div>
             <div class="stat-body">
@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(255,59,48,0.14);color:#ff3b30;">
+            <div class="stat-icon">
                 <i class="fas fa-circle-xmark"></i>
             </div>
             <div class="stat-body">
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(48,176,192,0.14);color:#30b0c0;">
+            <div class="stat-icon">
                 <i class="fas fa-database"></i>
             </div>
             <div class="stat-body">
@@ -121,7 +121,7 @@
             </div>
         </div>
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(139,92,246,0.14);color:#8b5cf6;">
+            <div class="stat-icon">
                 <i class="fas fa-triangle-exclamation"></i>
             </div>
             <div class="stat-body">
@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="stat-card glass">
-            <div class="stat-icon" style="background:rgba(249,115,22,0.14);color:#f97316;">
+            <div class="stat-icon">
                 <i class="fas fa-clock-rotate-left"></i>
             </div>
             <div class="stat-body">
@@ -141,9 +141,9 @@
     </div>
 
     <!-- ── FIREBASE CONFIG INFO ── -->
-    <div class="section-panel glass">
+    <div class="section-panel glass-dark">
         <div class="section-header">
-            <div class="section-title"><i class="fas fa-fire" style="color:#ff9500;"></i> Firebase Connection</div>
+            <div class="section-title"><i class="fas fa-fire"></i> Firebase Connection</div>
             <div class="header-actions">
                 <button class="admin-btn" id="btnTestConn" onclick="testConnection()">
                     <i class="fas fa-plug"></i> Test Connection
@@ -179,9 +179,9 @@
     </div>
 
     <!-- ── NODE STATUS TABLE ── -->
-    <div class="section-panel glass">
+    <div class="section-panel glass-dark">
         <div class="section-header">
-            <div class="section-title"><i class="fas fa-tower-broadcast" style="color:#30b0c0;"></i> ESP32 Device</div>
+            <div class="section-title"><i class="fas fa-tower-broadcast"></i> ESP32 Device</div>
             <div class="header-actions">
                 <button class="admin-btn" onclick="refreshNodes()">
                     <i class="fas fa-rotate-right"></i> Refresh
@@ -211,9 +211,9 @@
     </div>
 
     <!-- ── LIVE DATABASE LOG ── -->
-    <div class="section-panel glass" style="margin-bottom:14px;">
+    <div class="section-panel glass-dark" style="margin-bottom:14px;">
         <div class="section-header">
-            <div class="section-title"><i class="fas fa-list" style="color:#8b5cf6;"></i> Live Database Log</div>
+            <div class="section-title"><i class="fas fa-list"></i> Live Database Log</div>
             <div class="header-actions">
                 <select class="admin-select" id="logNodeFilter" onchange="applyLogFilter()">
                     <option value="all">All</option>
