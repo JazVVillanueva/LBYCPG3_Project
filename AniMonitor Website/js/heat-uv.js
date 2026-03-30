@@ -24,12 +24,14 @@
   };
 // ⚠️  Set this to the Realtime Database path where the ESP32 writes
 //     e.g. "sensorData", "sensors/latest", "weather/current"
-const SENSOR_PATH = "sensorData";
+const SENSOR_PATH = "sensors/node01";
 // ────────────────────────────────────────────────────────────────
 
 
 // ─── INIT FIREBASE ──────────────────────────────────────────────
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 const db        = firebase.database();
 const sensorRef = db.ref(SENSOR_PATH);
 
