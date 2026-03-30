@@ -273,6 +273,7 @@ function loadDefault(){
     document.getElementById('clk').textContent=now.toLocaleTimeString('en-PH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     const strength = (typeof USE_FIREBASE !== 'undefined' && USE_FIREBASE) ? signalQuality : Math.floor(Math.random() * 4) + 1;
     document.getElementById('signalStrength').textContent = signalBars(strength);
+    document.getElementById('pollRate').textContent = (pollRate / 1000) + 's';
   },1000);
 
   setInterval(()=>{
