@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniMonitor — Admin · Database Monitor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/admin-database.css">
+
+    <script>
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyD4w7Pwr76wPC0QGtPkF5bDdS1Am9ZJaSw",
+        authDomain: "animonitordb.firebaseapp.com",
+        databaseURL: "https://animonitordb-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "animonitordb",
+        storageBucket: "animonitordb.firebasestorage.app",
+        messagingSenderId: "383571268113",
+        appId: "1:383571268113:web:6fea2d970da19ed10557b0",
+        measurementId: "G-L4BMFXWWSF"
+        };
+
+        // Set to true when Firebase credentials are configured
+        const USE_FIREBASE = false;
+
+        let database;
+        if (USE_FIREBASE) {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+        }
+    </script>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid px-3">
+        <a href="dashboard.html" class="navbar-logo ms-4">AniMonitor</a>
+
+        <button class="navbar-toggler ms-auto" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-menu mx-auto mt-2 mt-lg-0">
+                <li><a href="dashboard.html">dashboard</a></li>
+                <li><a href="weather-forecast.html">forecast</a></li>
+                <li><a href="uv-heat.html">heat uv</a></li>
+                <li><a href="">map</a></li>
+                <li><a href="">analysis</a></li>
+                <li><a href="admin-database.html" class="active admin-link">admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- page content -->
+<div class="page-wrapper">
+<div class="admin-wrap">
+
+    <!-- ── TOP BAR ── -->
+    <div class="topbar">
+        <div>
+            <div class="page-eyebrow"><i class="fas fa-shield-halved"></i> Admin Panel</div>
+            <div class="page-title">Database <span class="accent">Monitor</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <div class="db-status-pill" id="dbStatusPill">
+                <div class="status-dot" id="dbStatusDot"></div>
+                <span id="dbStatusLabel">Connecting…</span>
+            </div>
+            <div class="clock" id="clk">--:--:--</div>
+        </div>
+    </div>
+
+    <!-- ── SUMMARY STAT CARDS ── -->
+    <div class="stat-grid">
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(255,149,0,0.14);color:#ff9500;">
+                <i class="fas fa-microchip"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="totalNodes">—</div>
+                <div class="stat-lbl">Total Nodes</div>
+            </div>
+        </div>
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(52,199,89,0.14);color:#34c759;">
+                <i class="fas fa-circle-check"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="onlineNodes">—</div>
+                <div class="stat-lbl">Online</div>
+            </div>
+        </div>
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(255,59,48,0.14);color:#ff3b30;">
+                <i class="fas fa-circle-xmark"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="offlineNodes">—</div>
+                <div class="stat-lbl">Offline</div>
+            </div>
+        </div>
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(48,176,192,0.14);color:#30b0c0;">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="totalReadings">—</div>
+                <div class="stat-lbl">Total Readings</div>
+            </div>
+        </div>
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(139,92,246,0.14);color:#8b5cf6;">
+                <i class="fas fa-triangle-exclamation"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="errorCount">—</div>
+                <div class="stat-lbl">DB Errors</div>
+            </div>
+        </div>
+        <div class="stat-card glass">
+            <div class="stat-icon" style="background:rgba(249,115,22,0.14);color:#f97316;">
+                <i class="fas fa-clock-rotate-left"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-val" id="lastSync">—</div>
+                <div class="stat-lbl">Last Sync</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── FIREBASE CONFIG INFO ── -->
+    <div class="section-panel glass">
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-fire" style="color:#ff9500;"></i> Firebase Connection</div>
+            <div class="header-actions">
+                <button class="admin-btn" id="btnTestConn" onclick="testConnection()">
+                    <i class="fas fa-plug"></i> Test Connection
+                </button>
+            </div>
+        </div>
+        <div class="config-grid">
+            <div class="config-row">
+                <span class="config-key">Project ID</span>
+                <span class="config-val" id="cfgProject">YOUR_PROJECT_ID</span>
+            </div>
+            <div class="config-row">
+                <span class="config-key">Database URL</span>
+                <span class="config-val" id="cfgDbUrl">https://esp-7b3c3-default-rtdb.asia-southeast1.firebasedatabase.app/</span>
+            </div>
+            <div class="config-row">
+                <span class="config-key">Auth Domain</span>
+                <span class="config-val" id="cfgAuthDomain">YOUR_PROJECT.firebaseapp.com</span>
+            </div>
+            <div class="config-row">
+                <span class="config-key">Firebase SDK</span>
+                <span class="config-val">v10.7.0 (compat)</span>
+            </div>
+            <div class="config-row">
+                <span class="config-key">Mode</span>
+                <span class="config-val" id="cfgMode">—</span>
+            </div>
+            <div class="config-row">
+                <span class="config-key">Poll Interval</span>
+                <span class="config-val">2 000 ms</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── NODE STATUS TABLE ── -->
+    <div class="section-panel glass">
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-tower-broadcast" style="color:#30b0c0;"></i> ESP32 Device</div>
+            <div class="header-actions">
+                <button class="admin-btn" onclick="refreshNodes()">
+                    <i class="fas fa-rotate-right"></i> Refresh
+                </button>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table class="admin-table" id="nodeTable">
+                <thead>
+                    <tr>
+                        <th>Node ID</th>
+                        <th>Status</th>
+                        <th>UV Index</th>
+                        <th>Temp (°C)</th>
+                        <th>Humidity (%)</th>
+                        <th>Signal (dBm)</th>
+                        <th>Uptime</th>
+                        <th>Last Seen</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="nodeTableBody">
+                    <!-- populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── LIVE DATABASE LOG ── -->
+    <div class="section-panel glass" style="margin-bottom:14px;">
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-list" style="color:#8b5cf6;"></i> Live Database Log</div>
+            <div class="header-actions">
+                <select class="admin-select" id="logNodeFilter" onchange="applyLogFilter()">
+                    <option value="all">All</option>
+                    <option value="node01">ESP32 Node</option>
+                </select>
+                <button class="admin-btn admin-btn-danger" onclick="clearLog()">
+                    <i class="fas fa-trash-can"></i> Clear Log
+                </button>
+                <button class="admin-btn" onclick="exportLog()">
+                    <i class="fas fa-file-arrow-down"></i> Export CSV
+                </button>
+                <div class="pause-toggle" id="pauseToggle" onclick="togglePause()" title="Pause / Resume log">
+                    <i class="fas fa-pause" id="pauseIcon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-controls">
+            <span class="log-count" id="logCount">0 entries</span>
+            <label class="log-autoscroll">
+                <input type="checkbox" id="autoScroll" checked>
+                Auto-scroll
+            </label>
+        </div>
+
+        <div class="log-table-wrap" id="logTableWrap">
+            <table class="admin-table log-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Timestamp</th>
+                        <th>Node</th>
+                        <th>UV</th>
+                        <th>Temp</th>
+                        <th>Humidity</th>
+                        <th>Signal</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="logBody">
+                    <!-- populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="admin-footer">
+        AniMonitor · Admin Panel · © 2026 &nbsp;|&nbsp; Firebase Realtime Database Monitor
+    </div>
+
+</div><!-- /admin-wrap -->
+</div><!-- /page-wrapper -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/admin-database.js"></script>
+</body>
+</html>

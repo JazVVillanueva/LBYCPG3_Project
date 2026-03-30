@@ -11,16 +11,17 @@
 // ─── FIREBASE CONFIG ────────────────────────────────────────────
 // ⚠️  Replace these values with your actual Firebase project config
 //     (copy from dashboard.js / Firebase console → Project Settings)
-const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT.firebaseapp.com",
-  databaseURL:       "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
-};
-
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4w7Pwr76wPC0QGtPkF5bDdS1Am9ZJaSw",
+    authDomain: "animonitordb.firebaseapp.com",
+    databaseURL: "https://animonitordb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "animonitordb",
+    storageBucket: "animonitordb.firebasestorage.app",
+    messagingSenderId: "383571268113",
+    appId: "1:383571268113:web:6fea2d970da19ed10557b0",
+    measurementId: "G-L4BMFXWWSF"
+  };
 // ⚠️  Set this to the Realtime Database path where the ESP32 writes
 //     e.g. "sensorData", "sensors/latest", "weather/current"
 const SENSOR_PATH = "sensorData";
