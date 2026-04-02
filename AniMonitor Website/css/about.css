@@ -13,7 +13,6 @@
     --card-radius-sm:  14px;
 }
 
-/* ─── BASE ──────────────────────────────────────────────────── */
 html, body {
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
@@ -29,7 +28,6 @@ body {
     background-attachment: fixed;
 }
 
-/* ─── GLASSMORPHISM HELPER ──────────────────────────────────── */
 .glass {
     position: relative;
     isolation: isolate;
@@ -49,7 +47,6 @@ body {
         inset 0 -1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* Subtle top-sheen pseudo-element — same as dashboard.css */
 .glass::before {
     content: '';
     position: absolute;
@@ -67,18 +64,15 @@ body {
 
 .glass > * { position: relative; z-index: 1; }
 
-/* ─── PAGE WRAPPER ──────────────────────────────────────────── */
 .page-wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 90px 16px 48px;
 }
 
-/* ─── HERO SECTION ──────────────────────────────────────────── */
 .hero-section {
     padding: 36px 32px 28px;
     margin-bottom: 20px;
-    /* warm accent glow top-right, matching dashboard hero */
     background:
         linear-gradient(135deg,
             rgba(18, 22, 28, 0.42) 0%,
@@ -154,7 +148,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* ─── INFO ROW ──────────────────────────────────────────────── */
 .info-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -198,7 +191,6 @@ body {
     line-height: 1.5;
 }
 
-/* ─── SECTION HEADER ────────────────────────────────────────── */
 .section-header {
     margin-bottom: 16px;
 }
@@ -221,7 +213,6 @@ body {
 
 .section-title .accent { color: var(--accent); }
 
-/* ─── TEAM ROW ──────────────────────────────────────────────── */
 .team-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -240,7 +231,6 @@ body {
 
 .member-card:hover { transform: translateY(-5px); }
 
-/* Initials avatar — liquid glass bubble */
 .member-avatar {
     width: 64px;
     height: 64px;
@@ -278,7 +268,7 @@ body {
     font-size: 0.76rem;
     font-weight: 500;
     color: var(--accent);
-    min-height: 18px; /* keeps layout stable while placeholder is empty */
+    min-height: 18px;
 }
 
 .member-divider {
@@ -293,7 +283,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.6;
     flex: 1;
-    min-height: 36px; /* placeholder spacing */
+    min-height: 36px;
 }
 
 .member-links {
@@ -324,7 +314,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* ─── TECH STACK ROW ────────────────────────────────────────── */
 .tech-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -361,7 +350,6 @@ body {
     line-height: 1.4;
 }
 
-/* ─── ABOUT FOOTER ──────────────────────────────────────────── */
 .about-footer {
     text-align: center;
     padding: 14px 20px;
@@ -371,7 +359,6 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* ─── RESPONSIVE ────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .page-wrapper { padding: 80px 12px 40px; }
 
