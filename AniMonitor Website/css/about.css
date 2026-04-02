@@ -3,7 +3,7 @@
 ═══════════════════════════════════════════════════════════════ */
 
 :root {
-    --glass-bg:        rgba(255, 255, 255, 0.02);
+    --glass-bg:        rgba(40, 40, 40, 0.72);
     --glass-border:    rgba(255, 255, 255, 0.18);
     --glass-highlight: rgba(255, 255, 255, 0.26);
     --text-primary:    #ffffff;
