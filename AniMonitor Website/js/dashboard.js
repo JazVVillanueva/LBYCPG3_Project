@@ -9,6 +9,26 @@ let humData = Array.from({length:POINTS},()=>+(72+Math.random()*10).toFixed(0));
 let signalQuality = 4;
 let pollRate = 2000;
 let firebaseUptimeSec = null;
+const DASHBOARD_TIP_KEY = 'dashboardTipDismissed';
+
+function initializePersistentTipAlert(){
+  const tipAlert = document.getElementById('dashboardTipAlert');
+  if(!tipAlert) return;
+
+  try{
+    if(localStorage.getItem(DASHBOARD_TIP_KEY) === '1'){
+      tipAlert.classList.remove('show');
+      tipAlert.classList.add('d-none');
+      return;
+    }
+
+    tipAlert.addEventListener('closed.bs.alert', ()=>{
+      localStorage.setItem(DASHBOARD_TIP_KEY, '1');
+    });
+  }catch(_err){
+    // Continue without persistence when storage access is blocked.
+  }
+}
 
 function getUVLabel(uv){
   if(uv >= 11) return 'Extreme';
@@ -260,6 +280,7 @@ function updateAlerts(uv, temp, hum){
 }
 
 function loadDefault(){
+  initializePersistentTipAlert();
   renderLiveData();
 
   // Initialize Firebase listener if enabled
