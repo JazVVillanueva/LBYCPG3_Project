@@ -18,7 +18,7 @@
   --temp: #ffffff;
   --temp-dim: rgba(255, 59, 48, 0.12);
   --hum: #ffffff;
-  --hum-dim: rgba(48, 176, 192, 0.12);
+  --hum-dim: rgba(34, 88, 189, 0.12);
   --green: #34c759;
   --card-radius: 18px;
   --hstat-bg-alpha-1: 0.08;
@@ -38,9 +38,9 @@ html, body{
   margin: 0;
 
   background: 
-    radial-gradient(circle at 20% 30%, rgba(5, 26, 37, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(85, 142, 168, 0.2) 0%, transparent 40%),
-    linear-gradient(180deg, #071420 0%, #9098a1 100%);
+    radial-gradient(circle at 20% 30%, rgba(0, 63, 95, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(184, 196, 201, 0.2) 0%, transparent 40%),
+    linear-gradient(180deg, #03338b 0%, #9098a1 100%);
     
   background-attachment: fixed;
   transition: background 0.8s ease-in-out;

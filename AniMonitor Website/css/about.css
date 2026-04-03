@@ -22,8 +22,8 @@ html, body {
 
 body {
     background:
-        radial-gradient(ellipse at 80% 0%,   rgba(89, 206, 53, 0.22) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 100%,  rgba(48, 192, 91, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 0%,   rgba(53, 201, 206, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 100%,  rgba(48, 192, 173, 0.18) 0%, transparent 55%),
         linear-gradient(160deg, #0d1117 0%, #161c24 60%, #0f1923 100%);
     background-attachment: fixed;
 }

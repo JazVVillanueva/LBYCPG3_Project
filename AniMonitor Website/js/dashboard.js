@@ -210,12 +210,12 @@ const humChart=new Chart(humCtx,{
   type:'line',
   data:{labels:[...labels],datasets:[{
     data:[...humData],
-    borderColor:'#30b0c0',borderWidth:2,
-    backgroundColor:mkGrad(humCtx,'rgb(48,176,192)'),
+    borderColor:'#1e40af',borderWidth:2,
+    backgroundColor:mkGrad(humCtx,'rgb(30,64,175)'),
     fill:true,tension:0.4,pointRadius:0,pointHoverRadius:4,
-    pointHoverBackgroundColor:'#30b0c0',
+    pointHoverBackgroundColor:'#1e40af',
   }]},
-  options:{...baseOpts('#30b0c0'),scales:{...baseOpts().scales,y:{...baseOpts().scales?.y,min:50,max:100}}}
+  options:{...baseOpts('#1e40af'),scales:{...baseOpts().scales,y:{...baseOpts().scales?.y,min:50,max:100}}}
 });
 
 const scCtx=document.getElementById('scatterChart').getContext('2d');
@@ -223,10 +223,10 @@ const scatterChart=new Chart(scCtx,{
   type:'scatter',
   data:{datasets:[{
     data:tempData.map((t,i)=>({x:+t,y:+humData[i]})),
-    backgroundColor:'rgba(255,149,0,0.6)',
+    backgroundColor:'#5d9414',
     pointRadius:4,
     pointHoverRadius:6,
-    borderColor:'rgba(255,149,0,0.9)',
+    borderColor:'#3a703a',
     borderWidth:1,
   }]},
   options:{
