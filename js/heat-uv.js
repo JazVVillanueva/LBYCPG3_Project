@@ -8,35 +8,10 @@
    ═══════════════════════════════════════════════════════════════ */
 
 
-// ─── FLAGS ──────────────────────────────────────────────────────
-// Set USE_FIREBASE to true when your ESP32 is pushing live data.
-// Set to false to use generated mock data during development.
-const USE_FIREBASE = false;
-
-
-// ─── FIREBASE CONFIG ────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey:            "AIzaSyD4w7Pwr76wPC0QGtPkF5bDdS1Am9ZJaSw",
-  authDomain:        "animonitordb.firebaseapp.com",
-  databaseURL:       "https://animonitordb-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:         "animonitordb",
-  storageBucket:     "animonitordb.firebasestorage.app",
-  messagingSenderId: "383571268113",
-  appId:             "1:383571268113:web:6fea2d970da19ed10557b0",
-  measurementId:     "G-L4BMFXWWSF"
-};
-
-const SENSOR_PATH = "sensors/node01";
-
-
-// ─── INIT FIREBASE (only when enabled) ──────────────────────────
-let sensorRef = null;
-if (USE_FIREBASE) {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  sensorRef = firebase.database().ref(SENSOR_PATH);
-}
+// ─── FLAGS & FIREBASE REF ───────────────────────────────────────
+// USE_FIREBASE and sensorRef are initialised by the inline <script>
+// in uv-heat.html (same pattern as index.html / dashboard.js).
+// No Firebase config or init needed here.
 
 
 // ─── STATE ──────────────────────────────────────────────────────

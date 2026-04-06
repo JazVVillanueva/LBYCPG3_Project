@@ -18,13 +18,36 @@
     <!-- Firebase SDK (compat version for simplicity) -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+
+    <!-- Firebase init — mirrors index.html so heat-uv.js can use the global sensorRef -->
+    <script>
+        const firebaseConfig = {
+            apiKey:            "AIzaSyD4w7Pwr76wPC0QGtPkF5bDdS1Am9ZJaSw",
+            authDomain:        "animonitordb.firebaseapp.com",
+            databaseURL:       "https://animonitordb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId:         "animonitordb",
+            storageBucket:     "animonitordb.firebasestorage.app",
+            messagingSenderId: "383571268113",
+            appId:             "1:383571268113:web:6fea2d970da19ed10557b0",
+            measurementId:     "G-L4BMFXWWSF"
+        };
+
+        const USE_FIREBASE = true;
+
+        let database, sensorRef;
+        if (USE_FIREBASE) {
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            database  = firebase.database();
+            sensorRef = database.ref('sensors/node01');
+        }
+    </script>
 </head>
 <body>
 
     <!-- ═══ NAVBAR ═══ -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid px-3">
-            <a href="dashboard.html" class="navbar-logo ms-4">AniMonitor</a>
+            <a href="index.html" class="navbar-logo ms-4">AniMonitor</a>
 
             <button class="navbar-toggler ms-auto" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarMenu"
@@ -34,7 +57,7 @@
 
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-menu mx-auto mt-2 mt-lg-0">
-                    <li><a href="dashboard.html">dashboard</a></li>
+                    <li><a href="index.html">dashboard</a></li>
                     <li><a href="weather-forecast.html">forecast</a></li>
                     <li><a href="uv-heat.html" class="active">heat uv</a></li>
                     <li><a href="map.html">map</a></li>
@@ -101,7 +124,6 @@
                 <!-- UV Index card -->
                 <div class="glass data-card uv-card">
                     <div class="data-card-header">
-                        <span class="data-card-icon">☀️</span>
                         <span class="data-card-label">UV Index</span>
                     </div>
                     <div class="data-card-value-row">
@@ -115,7 +137,6 @@
                 <!-- Heat Index card -->
                 <div class="glass data-card hi-card">
                     <div class="data-card-header">
-                        <span class="data-card-icon">🌡️</span>
                         <span class="data-card-label">Heat Index</span>
                     </div>
                     <div class="data-card-value-row">

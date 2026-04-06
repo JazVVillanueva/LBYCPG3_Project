@@ -293,6 +293,7 @@ body {
 
 @media (max-width: 520px) {
     .right-col { flex-direction: column; }
+    .data-card { flex: none; }   /* ← reset flex-basis:0 set at 768px, prevents height collapse */
 
     .caution-headline { font-size: 1.5rem; }
 
