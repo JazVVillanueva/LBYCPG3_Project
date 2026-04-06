@@ -63,9 +63,10 @@
                 <li><a href="index.html" class="active">dashboard</a></li>
                 <li><a href="weather-forecast.html">forecast</a></li>
                 <li><a href="uv-heat.html">heat uv</a></li>
-                <li><a href="">map</a></li>
-                <li><a href="">analysis</a></li>
-                            <li><a href="admin-database.html" class="admin-link">admin</a></li>
+                <li><a href="map.html">map</a></li>
+                <li><a href="admin-database.html">database</a></li>
+                <li><a href="about.html">about</a></li>
+                
             </ul>
         </div>
     </div>
@@ -79,23 +80,16 @@
 <section class="dash col-12 col-xxl-9">
 
   <header class="topbar">
-    <div class="logo">Ani<span>Monitor</span></div>
+    <div class="logo"><span></span></div>
     <div style="display:flex;align-items:center;gap:12px;">
-      <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#dashboardInfoModal">About</button>
-      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
       <div class="clock" id="clk">--:--:--</div>
     </div>
   </header>
 
-  <div class="alert alert-info alert-dismissible fade show py-2 px-3 mb-3" id="dashboardTipAlert" role="alert">
-    <strong>Tip:</strong> Use the About button for sensor context and data source details.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-
   <section class="hero glass">
-    <div class="hero-label">ESP32 · Node 01 · Manila, PH</div>
+    <div class="hero-label">ESP32 Based in Manila, PH</div>
     <div class="hero-title">Real-Time <span class="accent">Sensor</span> Dashboard</div>
-    <div class="hero-sub">UV radiation · Temperature · Humidity — updated every 2s</div>
+    <div class="hero-sub">UV intensity, Temperature, and Humidity updated every 2s</div>
     <div class="hero-stats">
       <div class="hstat uv-c">
         <div class="hstat-label">UV Index</div>
@@ -183,22 +177,6 @@
 
 </main>
 
-<div class="modal fade" id="dashboardInfoModal" tabindex="-1" aria-labelledby="dashboardInfoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="dashboardInfoModalLabel">AniMonitor Dashboard</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Live dashboard for UV, temperature, and humidity trends from Node 01 using DHT22 and GUVA12SD sensors, connected to Firebase Realtime Database. Data refreshes every 2 seconds.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
