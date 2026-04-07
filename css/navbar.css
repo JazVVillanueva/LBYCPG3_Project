@@ -113,27 +113,8 @@
 }
 
 
-@media (min-width: 990px){
-    .navbar-collapse{
-        background: transparent;
-        padding: 0;
-        border-radius: 0;
-        justify-content: center;
-    }
 
-    .navbar-menu{
-        padding: 0;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .navbar-logo {
-        position: absolute;
-        left: 2rem;
-    }
-}
-
-@media (max-width: 991px){
+@media (max-width: 990px){
     .navbar-collapse {
         overflow-x: auto;
         overflow-y: hidden;
