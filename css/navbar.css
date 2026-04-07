@@ -134,10 +134,42 @@
 }
 
 @media (max-width: 991px){
+    .navbar-collapse {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0.15rem 0.5rem;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .navbar-collapse::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .navbar-collapse::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    .navbar-collapse::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+    }
+
+    .navbar-collapse::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .navbar-menu {
+        flex-wrap: nowrap;
+        width: fit-content;
+    }
+
     .navbar-menu li a{
         padding: 4px 14px;
         font-size: 0.74rem;
         border-radius: 30px;
+        flex-shrink: 0;
     }
     .navbar-collapse.show .navbar-menu li {
         animation: slideIn 0.6s ease forwards;
