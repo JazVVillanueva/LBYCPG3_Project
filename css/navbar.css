@@ -121,7 +121,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: auto; /* Prevents the invisible container from covering your logo */
+        width: auto;
         justify-content: center;
     }
 }

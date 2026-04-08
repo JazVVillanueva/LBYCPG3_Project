@@ -1,8 +1,4 @@
-/* ═══════════════════════════════════════════════════
-   AniMonitor — heat-uv.css
-   Warm amber gradient bg + glassmorphism cards
-   Inherits Montserrat font via Google Fonts in HTML
-═══════════════════════════════════════════════════ */
+
 
 :root {
     --glass-border:  rgba(255, 255, 255, 0.18);

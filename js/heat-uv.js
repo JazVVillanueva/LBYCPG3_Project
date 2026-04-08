@@ -1,17 +1,9 @@
-/* ═══════════════════════════════════════════════════════════════
-   heat-uv.js  —  AniMonitor · UV & Heat Index Page
-   ═══════════════════════════════════════════════════════════════
-   Firebase fields expected (same as dashboard.js):
-     data.uv          → UV index (numeric, e.g. 8.4)
-     data.temperature → Ambient temp in °C  (e.g. 33.2)
-     data.humidity    → Relative humidity % (e.g. 78)
-   ═══════════════════════════════════════════════════════════════ */
+
 
 
 // ─── FLAGS & FIREBASE REF ───────────────────────────────────────
 // USE_FIREBASE and sensorRef are initialised by the inline <script>
 // in uv-heat.html (same pattern as index.html / dashboard.js).
-// No Firebase config or init needed here.
 
 
 // ─── STATE ──────────────────────────────────────────────────────
